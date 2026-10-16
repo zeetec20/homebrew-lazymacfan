@@ -10,11 +10,11 @@ class Lazymacfan < Formula
   # those keys there), so the arch split is a plain `Hardware::CPU` branch. The
   # version is read from the URL, which is why there is no `version` stanza.
   if Hardware::CPU.arm?
-    url "https://github.com/zeetec20/lazymacfan/releases/download/v0.4.0/lazymacfan-darwin-arm64.tar.gz"
-    sha256 "8c9655f86a9cdd7daeadbc9af677d676e3e81128ad7ed4c06ee99e90359161b9"
+    url "https://github.com/zeetec20/lazymacfan/releases/download/v0.5.0/lazymacfan-darwin-arm64.tar.gz"
+    sha256 "fa925bfd7388c36dd061e2fc8ca9a790e21d7568dfce1fe7fdf2b55f4220104d"
   else
-    url "https://github.com/zeetec20/lazymacfan/releases/download/v0.4.0/lazymacfan-darwin-x64.tar.gz"
-    sha256 "f6b67802ecfe75eafd49964049990e8f34d419fb3309dc72b5d906fcf73d31e4"
+    url "https://github.com/zeetec20/lazymacfan/releases/download/v0.5.0/lazymacfan-darwin-x64.tar.gz"
+    sha256 "55ee002990c36c811ef7109c9b71567afab363f4fb5b0ddffd4cf14fc1932c9f"
   end
 
   def install
