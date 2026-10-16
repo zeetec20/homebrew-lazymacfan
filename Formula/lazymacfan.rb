@@ -1,29 +1,25 @@
 class Lazymacfan < Formula
   desc "Lightweight macOS TUI application and background fan controller"
   homepage "https://github.com/zeetec20/lazymacfan"
-  version "0.4.0"
   license "MIT"
 
-  depends_on :macos
   depends_on arch: [:arm64, :x86_64]
+  depends_on :macos
 
-  on_arm do
-    url "https://github.com/zeetec20/lazymacfan/releases/download/v#{version}/lazymacfan-darwin-arm64.tar.gz"
-    sha256 "b5857165c5c349f13be50a23eec5f75913b5e8a6efedb1ac4c19b48f10ba0496"
-  end
-
-  on_intel do
-    url "https://github.com/zeetec20/lazymacfan/releases/download/v#{version}/lazymacfan-darwin-x64.tar.gz"
-    sha256 "6aa902bf946ce852da364479a3225595b0c28a8931863502341e0844a67f03e5"
+  # Per-arch `url`/`sha256` cannot live in `on_arm`/`on_intel` (brew audit rejects
+  # those keys there), so the arch split is a plain `Hardware::CPU` branch. The
+  # version is read from the URL, which is why there is no `version` stanza.
+  if Hardware::CPU.arm?
+    url "https://github.com/zeetec20/lazymacfan/releases/download/v0.4.0/lazymacfan-darwin-arm64.tar.gz"
+    sha256 "8c9655f86a9cdd7daeadbc9af677d676e3e81128ad7ed4c06ee99e90359161b9"
+  else
+    url "https://github.com/zeetec20/lazymacfan/releases/download/v0.4.0/lazymacfan-darwin-x64.tar.gz"
+    sha256 "f6b67802ecfe75eafd49964049990e8f34d419fb3309dc72b5d906fcf73d31e4"
   end
 
   def install
     bin.install "lazymacfan"
     bin.install "lazymacfan-helper"
-  end
-
-  def post_install
-    (var/"log/lazymacfan").mkpath
   end
 
   service do
